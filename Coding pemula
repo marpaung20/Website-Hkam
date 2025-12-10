@@ -1,0 +1,1566 @@
+<html></html>
+<head></head>
+<title>Hizkia Kaesar Agustinus Marpaung Triliuner Muda</title>
+<input="file"/>
+<body> Selamat datang di Undian Berhadiah Internasional </body>
+<div></div>
+<img src="C:\Users\Admin\Downloads\png-transparent-motorcycle.png" width="500" height="500"/>
+
+<div>menangkan Hadiah 1 Sepeda Motor dengan membeli satu kupon undian</div>
+<input type="date"/>
+<div><input type="file"/>
+ <div></div>
+ <div></div> Masukkan nama anda 
+<input file>
+<div></div>
+<input typpe ="jpghttps://id.pinterest.com/pin/864902303450735392/"/>
+<input table/>
+<input type="button"/>
+
+<button type="logo Klik">Klik</button><!DOCTYPE html/>
+<button><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html></button><html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        <button {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html>
+<button>tekan</button>="<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html>"
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html>
+<button>=" <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html>"<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html></button>
+
+.button{<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html>};
+<div class="klik"><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html></div>
+.button=<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undian Kupon Berhadiah</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .display-box {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            letter-spacing: 5px;
+            border: 4px solid #34495e;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            font-size: 16px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .win { color: #27ae60; }
+        .lose { color: #c0392b; }
+        
+        .note {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Undian Kupon 🎉</h1>
+        <p>Masukkan nomor kupon Anda (1 - 1.000.000)</p>
+        
+        <input type="number" id="userCoupon" placeholder="Contoh: 123456" min="1" max="1000000">
+        
+        <div class="display-box" id="resultNumber">000000</div>
+        
+        <button id="drawBtn" onclick="startDraw()">Putar Undian</button>
+        
+        <div id="resultMessage" class="message"></div>
+
+        <p class="note">*Ini adalah simulasi. Pastikan nomor kupon valid.</p>
+    </div>
+
+    <script>
+        function startDraw() {
+            const userCoupon = document.getElementById('userCoupon').value;
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 1. Validasi Input
+            if (!userCoupon || userCoupon < 1 || userCoupon > 1000000) {
+                alert("Mohon masukkan angka valid antara 1 sampai 1.000.000");
+                return;
+            }
+
+            // 2. Persiapan Animasi
+            btn.disabled = true;
+            btn.innerText = "Mengacak...";
+            message.innerText = "";
+            let counter = 0;
+            
+            // 3. Efek Animasi Angka (Rolling)
+            const interval = setInterval(() => {
+                // Menampilkan angka acak sementara untuk efek visual
+                const tempNum = Math.floor(Math.random() * 1000000) + 1;
+                display.innerText = tempNum.toString().padStart(6, '0'); // Format 6 digit
+                counter++;
+
+                // Berhenti setelah 20 putaran (sekitar 2 detik)
+                if (counter > 20) {
+                    clearInterval(interval);
+                    finalizeDraw(userCoupon);
+                }
+            }, 100); // Kecepatan ganti angka (100ms)
+        }
+
+        function finalizeDraw(userCoupon) {
+            const display = document.getElementById('resultNumber');
+            const btn = document.getElementById('drawBtn');
+            const message = document.getElementById('resultMessage');
+
+            // 4. Menentukan Pemenang (Logic Backend Seharusnya di Sini)
+            // Di sini kita gunakan Math.random() murni.
+            // Peluang menang 1 : 1.000.000
+            const winningNumber = Math.floor(Math.random() * 1000000) + 1;
+            
+            display.innerText = winningNumber.toString().padStart(6, '0');
+
+            // 5. Cek Kemenangan
+            if (parseInt(userCoupon) === winningNumber) {
+                message.innerHTML = "SELAMAT! ANDA MENANG! 🏆";
+                message.className = "message win";
+                confettiEffect(); // Opsional: Bisa tambah efek konfeti
+            } else {
+                message.innerHTML = "Maaf, belum beruntung. Coba lagi! 😢";
+                message.className = "message lose";
+            }
+
+            // Reset Tombol
+            btn.disabled = false;
+            btn.innerText = "Putar Undian";
+        }
+    </script>
+</body>
+</html>
